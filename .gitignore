@@ -1,0 +1,47 @@
+# Archivos y carpetas a ignorar para un proyecto Flask
+
+# Entornos virtuales
+.venv/
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+entorno/
+
+# Archivos de configuración sensibles
+.env
+
+# Archivos de caché de Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Archivos de paquetes y distribución
+*.egg-info/
+*.egg
+dist/
+build/
+.eggs/
+MANIFEST
+
+# Instancia de Flask (configuración local)
+instance/
+!instance/.gitignore
+
+# Base de datos SQLite (si se usa)
+db.sqlite3
+db.sqlite3-journal
+
+# Caché y reportes de pruebas
+.pytest_cache/
+.coverage
+.coverage.*
+.cache
+
+# Jupyter Notebooks
+.ipynb_checkpoints
+
+# Otros
+.webassets-cache
+# End of Selection
