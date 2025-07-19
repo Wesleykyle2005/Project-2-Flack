@@ -1,120 +1,127 @@
+
+
 # Flack Chat - CS50W Project 2
 
-Esta es mi solución para el **CS50W Project 2: Flack**, una aplicación web de chat en tiempo real desarrollada con Flask y Socket.IO, similar a Slack.
+This is my solution for **CS50W Project 2: Flack**, a real-time web chat application built with Flask and Socket.IO, similar to Slack.
 
-## Descripción del Proyecto
+## Project Description
 
-Flack es una aplicación de mensajería en tiempo real que permite a los usuarios:
-- Registrarse con un nombre de usuario que se recuerda entre sesiones
-- Crear y unirse a canales de chat
-- Enviar y recibir mensajes en tiempo real
-- Eliminar sus propios mensajes (funcionalidad extra)
-- Recordar el canal en el que estaban al recargar la página
+Flack is a real-time messaging application that allows users to:
 
-## Funcionalidades Implementadas
+* Register with a display name that persists between sessions
+* Create and join chat channels
+* Send and receive messages in real time
+* Delete their own messages (extra feature)
+* Remember the last channel visited when the page reloads
 
-### ✅ Requisitos Principales
-1. **Display Name**: Se solicita al usuario la primera vez y se guarda en localStorage
-2. **Channel Creation**: Los usuarios pueden crear canales nuevos (nombres únicos)
-3. **Channel List**: Lista de canales disponibles para seleccionar
-4. **Messages View**: Visualización de mensajes por canal (máximo 100 por canal)
-5. **Sending Messages**: Envío y recepción de mensajes en tiempo real
-6. **Remembering the Channel**: El canal actual se recuerda al recargar la página
+## Implemented Features
 
-### 🎯 Personal Touch (Funcionalidad Extra)
-**Eliminación de mensajes propios**: Los usuarios pueden eliminar únicamente sus propios mensajes haciendo clic en el botón "X" que aparece junto a cada mensaje que han enviado.
+### ✅ Core Requirements
 
-## Estructura del Proyecto
+1. **Display Name**: Requested from the user on first visit and stored in localStorage
+2. **Channel Creation**: Users can create new channels (with unique names)
+3. **Channel List**: Available channels are listed and selectable
+4. **Messages View**: Messages are displayed per channel (up to 100 per channel)
+5. **Sending Messages**: Messages are sent and received in real time
+6. **Remembering the Channel**: The current channel is remembered after page reload
+
+### 🎯 Personal Touch (Extra Feature)
+
+**Delete Own Messages**: Users can delete only their own messages by clicking the "X" button that appears next to each of their messages.
+
+## Project Structure
 
 ```
 flack/
-├── application.py              # Backend principal con Flask y Socket.IO
-├── requirements.txt            # Dependencias del proyecto
+├── application.py              # Main backend using Flask and Socket.IO
+├── requirements.txt            # Project dependencies
 ├── static/
 │   ├── css/
-│   │   └── styles.css          # Estilos de la aplicación
+│   │   └── styles.css          # Application styling
 │   ├── js/
-│   │   └── script.js           # Lógica del frontend y comunicación
+│   │   └── script.js           # Frontend logic and communication
 │   └── images/
-│       ├── diagram_channels.svg    # Diagrama de creación de canales
-│       ├── diagram_messages.svg    # Diagrama de envío de mensajes
-│       └── diagram_delete.svg      # Diagrama de eliminación de mensajes
+│       ├── diagram_channels.svg    # Channel creation diagram
+│       ├── diagram_messages.svg    # Message sending diagram
+│       └── diagram_delete.svg      # Message deletion diagram
 ├── templates/
-│   └── index.html              # Interfaz principal
-└── README.md                   # Este archivo
+│   └── index.html              # Main interface
+└── README.md                   # This file
 ```
 
-## Tecnologías Utilizadas
+## Technologies Used
 
-- **Backend**: Flask, Flask-SocketIO
-- **Frontend**: HTML5, CSS3, JavaScript (ES6+)
-- **Comunicación en tiempo real**: Socket.IO
-- **Almacenamiento local**: localStorage (navegador)
-- **Almacenamiento en servidor**: Variables globales en memoria
+* **Backend**: Flask, Flask-SocketIO
+* **Frontend**: HTML5, CSS3, JavaScript (ES6+)
+* **Real-time communication**: Socket.IO
+* **Local storage**: localStorage (browser)
+* **Server-side storage**: In-memory global variables
 
-## Cómo Ejecutar el Proyecto
+## How to Run the Project
 
-1. **Instalar dependencias**:
+1. **Install dependencies**:
+
    ```bash
    pip install -r requirements.txt
    ```
 
-2. **Configurar variables de entorno**:
+2. **Set environment variables**:
+
    ```bash
-   # En Windows (PowerShell):
+   # On Windows (PowerShell):
    $env:SECRET_KEY = "secret"
    $env:FLASK_APP = "application.py"
-   
-   # En Windows (CMD):
+
+   # On Windows (CMD):
    set SECRET_KEY=secret
    set FLASK_APP=application.py
-   
-   # En Mac/Linux:
+
+   # On Mac/Linux:
    export SECRET_KEY="secret"
    export FLASK_APP="application.py"
    ```
 
-3. **Ejecutar la aplicación**:
+3. **Run the application**:
+
    ```bash
    flask run
-   # O alternativamente:
+   # Or alternatively:
    python application.py
    ```
 
-4. **Abrir en el navegador**:
-   Navega a `http://127.0.0.1:5000`
+4. **Open in browser**:
+   Navigate to `http://127.0.0.1:5000`
 
-## Diagramas de Flujo de Eventos Socket.IO
+## Socket.IO Event Flow Diagrams
 
-### 1. Creación de salas
+### 1. Channel Creation
 
-![Diagrama de creación de salas](static/images/diagram_channel.png)
+![Channel Creation Diagram](static/images/diagram_channel.png)
 
-### 2. Envío de mensajes
+### 2. Message Sending
 
-![Diagrama de envío de mensajes](static/images/diagram_message.png)
+![Message Sending Diagram](static/images/diagram_message.png)
 
-### 3. Eliminación de mensajes
+### 3. Message Deletion
 
-![Diagrama de eliminación de mensajes](static/images/diagram_delete.png)
+![Message Deletion Diagram](static/images/diagram_delete.png)
 
-## Características Técnicas
+## Technical Features
 
-- **Comunicación en tiempo real**: Implementada con Socket.IO para mensajes instantáneos
-- **Persistencia local**: Display name y canal actual se guardan en localStorage
-- **Gestión de salas**: Los usuarios se unen automáticamente a la sala del canal seleccionado
-- **Límite de mensajes**: Máximo 100 mensajes por canal (se eliminan los más antiguos)
-- **Interfaz responsiva**: Diseño adaptable para diferentes tamaños de pantalla
-- **Validación de datos**: Verificación de nombres de usuario y canales únicos
+* **Real-time communication**: Implemented with Socket.IO for instant messaging
+* **Local persistence**: Display name and current channel are stored in localStorage
+* **Room management**: Users are automatically joined to the selected channel’s room
+* **Message limit**: A maximum of 100 messages per channel (oldest are discarded)
+* **Responsive UI**: Interface adapts to different screen sizes
+* **Data validation**: Ensures unique usernames and channel names
 
-## Notas de Desarrollo
+## Development Notes
 
-- Los datos se almacenan en memoria del servidor (variables globales) como especifica el proyecto
-- No se utiliza base de datos para cumplir con los requisitos de CS50W
-- La aplicación maneja reconexiones automáticas de Socket.IO
-- Todos los eventos están documentados en los diagramas de flujo
+* All data is stored in server memory (global variables) as specified in the project instructions
+* No database is used, in compliance with CS50W requirements
+* The application handles automatic reconnections via Socket.IO
+* All events are documented in the flow diagrams
 
 ---
 
-**Desarrollado como parte del curso CS50's Web Programming with Python and JavaScript**
-
+**Developed as part of CS50's Web Programming with Python and JavaScript course**
