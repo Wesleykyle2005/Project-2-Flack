@@ -4,6 +4,8 @@
 
 This is my solution for **CS50W Project 2: Flack**, a real-time web chat application built with Flask and Socket.IO, similar to Slack.
 
+🗪 README.md en español: [README.md](README.md)
+
 ## Project Description
 
 Flack is a real-time messaging application that allows users to:
